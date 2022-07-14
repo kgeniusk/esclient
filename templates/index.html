@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/htmx.org@1.7.0"></script>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/hits.css">
+</head>
+
+<body>
+<main>
+    <h1>
+        Search for documents
+    </h1>
+    <input class="form-control"
+           type="search"
+           size="50"
+           name="keyword"
+           placeholder="Begin Typing To Search documents..."
+           hx-post="/search"
+           hx-trigger="keyup changed delay:500ms, search"
+           hx-target="#search-results"
+           hx-indicator=".htmx-indicator">
+
+    <p id="search-results">No results</p>
+</main>
+</body>
+
+</html>

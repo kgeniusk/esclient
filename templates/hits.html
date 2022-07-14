@@ -1,0 +1,8 @@
+<h2>Search result for: <em>{{ keyword }}</em></h2>
+{% for hit in hits %}
+    <section class="search-result">
+        <h2>{{ hit._source.title }}</h2>
+        <p class="search-result-metadata">{{ hit._id }} - score: {{ hit._score }}</p>
+        <p>{{ hit._source.content }}</p>
+    </section>
+{% endfor %}

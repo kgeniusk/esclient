@@ -1,0 +1,9 @@
+.search-result {
+    background-color: #f6f6f6;
+    padding: 1em;
+    margin: 1em 0;
+}
+
+.search-result-metadata {
+    color: #6e6e6e
+}
