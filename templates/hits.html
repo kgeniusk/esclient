@@ -1,8 +1,10 @@
 <h2>Search result for: <em>{{ keyword }}</em></h2>
 {% for hit in hits %}
     <section class="search-result">
-        <h2>{{ hit._source.title }}</h2>
+        <h2>{{ hit.highlight['heading 1']|first|safe }}</h2>
+        <h3>{{ hit.highlight['heading 2']|first|safe }}</h3>
+        <h4>{{ hit.highlight['heading 3']|first|safe }}</h4>
         <p class="search-result-metadata">{{ hit._id }} - score: {{ hit._score }}</p>
-        <p>{{ hit._source.content }}</p>
+        <p>{{ hit.highlight.content|first|safe }}</p>
     </section>
 {% endfor %}

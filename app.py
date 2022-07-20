@@ -1,6 +1,6 @@
 from elasticsearch import Elasticsearch
 from config import CERT_FINGERPRINT, ELASTIC_PASSWORD, ELASTIC_USER, ELASTIC_HOST
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, render_template
 
 
 app = Flask(__name__)
@@ -28,7 +28,11 @@ def search():
 
     keyword = request.form['keyword']
     if keyword != '':
-        r = client.search(index='mydocuments', query={"query_string": {'query': f'{keyword}'}})
+        r = client.search(index='mysales-handbuch',
+                          query={"query_string": {'query': f'{keyword}'}},
+                          highlight={'order': 'score', 'require_field_match': False, 'fields': {
+                            'heading 1': {}, 'heading 2': {}, 'heading 3': {}, 'content': {}
+                          }})
         hits = r.body.get('hits').get('hits')
         if hits:
             return render_template('hits.html', hits=hits, keyword=keyword)
